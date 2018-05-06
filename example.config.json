@@ -1,0 +1,14 @@
+{
+	"bridge": {
+		"name": "Homebridge"
+	},
+
+	"accessories": [
+		{
+			"accessory": "MijiaCamera",
+      "name": "Living Room Camera",
+      "ip": "IP_ADDRESS_OF_THE_CAMERA",
+			"token": "CAMERA_TOKEN"
+		}
+	]
+}

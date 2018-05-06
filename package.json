@@ -1,0 +1,26 @@
+{
+  "name": "homebridge-mijia-camera",
+  "version": "0.0.1",
+  "description": "Xiaomi Mijia camera plugin for Homebridge",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin",
+    "xiaomi",
+    "mijia camera"
+  ],
+  "dependencies": {
+    "miio": "0.15.6"
+  },
+  "engines": {
+    "node": ">=8.10.0",
+    "homebridge": ">=0.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0-alpha.2",
+    "eslint-config-standard": "^12.0.0-alpha.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.1.0"
+  }
+}
