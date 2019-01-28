@@ -12,7 +12,7 @@ class MijiaCameraAccessory {
   constructor (log, config) {
     this.log = log
 
-    this.device = new MijiaCamera(config)
+    this.device = new MijiaCamera(config, this.log)
     this.serviceInfo = this.createServiceInfo()
     this.cameraPowerToggleService = this.createToggleService()
 

@@ -1,12 +1,12 @@
 const miio = require('miio')
 
 class MijiaCamera {
-  constructor (config) {
+  constructor (config, log) {
     const { name, ip, token } = config
     if (!ip || !token) {
       throw new Error('The camera IP address and token are required')
     }
-
+    this.log = log;
     Object.assign(this, { name, ip, token })
   }
 
@@ -26,6 +26,7 @@ class MijiaCamera {
     }
 
     const stats = this.device.call('get_prop', ['power'])
+    this.log(`current power state: ${stats[0]}`)
     return stats[0] === 'on'
   }
 
