@@ -16,12 +16,6 @@ class MijiaCameraAccessory {
     this.serviceInfo = this.createServiceInfo()
     this.cameraPowerToggleService = this.createToggleService()
 
-    this.device.connect().then(() => {
-      this.log(`Successfully connected to camera ${config.ip}`)
-    }).catch(error => {
-      this.log('Error connecting to camera')
-      this.log(error)
-    })
   }
 
   createServiceInfo () {
@@ -48,6 +42,7 @@ class MijiaCameraAccessory {
     }
 
     const setCameraStatus = function (state, callback) {
+      this.log(`set power state to ${state}`)
       this.device.setPowerState(state)
         .then(() => {
           callback(null)

@@ -13,30 +13,38 @@ class MijiaCamera {
   async connect () {
     const { ip: address, token } = this
 
-    const device = await miio.device({ address, token }).catch(err => {
-      throw (new Error('Error creating device', err))
-    })
+    this.log(`connecting to camera at ${address}...`)
 
-    this.device = device
+    return miio.device({ address, token });
+
+    // this.device = device
   }
 
   async getPowerState () {
-    if (!this.device) {
-      this.log.error('Camera not available')
-      throw (new Error('Camera not available'))
-    }
 
-    return this.device.call('get_prop', ['power'])
+    try {
+      const device = await this.connect()
+      return device.call('get_prop', ['power'])
+    } catch (err) {
+      this.log.error('Camera not available')
+      throw (new Error('Camera not available', err))
+    }
+    
   }
 
   async setPowerState (state) {
-    if (!this.device) {
+
+    try {
+      const device = await this.connect()
+      device.call('set_power', [state ? 'on' : 'off'])
+    } catch (err) {
       this.log.error('Camera not available')
-      throw (new Error('Camera not available'))
+      throw (new Error('Camera not available', err))
     }
 
-    const status = state ? 'on' : 'off'
-    this.device.call('set_power', [status])
+
+    
+    
   }
 }
 
