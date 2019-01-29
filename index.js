@@ -40,7 +40,9 @@ class MijiaCameraAccessory {
     const getCameraStatus = function (callback) {
       this.device.getPowerState()
         .then(status => {
-          callback(null, status)
+          const power = status[0];
+          this.log(`current power state: ${power}`)
+          callback(null, power === 'on')
         })
         .catch(callback)
     }

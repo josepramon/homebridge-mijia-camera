@@ -25,9 +25,7 @@ class MijiaCamera {
       throw (new Error('Camera not available'))
     }
 
-    const stats = await this.device.call('get_prop', ['power'])
-    this.log(`current power state: ${stats[0]}`)
-    return stats[0] === 'on'
+    return this.device.call('get_prop', ['power'])
   }
 
   async setPowerState (state) {
