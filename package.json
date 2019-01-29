@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mijia-camera",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Xiaomi Mijia camera plugin for Homebridge",
   "license": "MIT",
   "keywords": [
