@@ -22,6 +22,7 @@ class MijiaCamera {
 
   async getPowerState () {
     if (!this.device) {
+      this.log.error('Camera not available')
       throw (new Error('Camera not available'))
     }
 
@@ -30,6 +31,7 @@ class MijiaCamera {
 
   async setPowerState (state) {
     if (!this.device) {
+      this.log.error('Camera not available')
       throw (new Error('Camera not available'))
     }
 
