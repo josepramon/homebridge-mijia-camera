@@ -12,16 +12,10 @@ class MijiaCameraAccessory {
   constructor (log, config) {
     this.log = log
 
-    this.device = new MijiaCamera(config)
+    this.device = new MijiaCamera(config, this.log)
     this.serviceInfo = this.createServiceInfo()
     this.cameraPowerToggleService = this.createToggleService()
 
-    this.device.connect().then(() => {
-      this.log(`Successfully connected to camera ${config.ip}`)
-    }).catch(error => {
-      this.log('Error connecting to camera')
-      this.log(error)
-    })
   }
 
   createServiceInfo () {
@@ -40,12 +34,15 @@ class MijiaCameraAccessory {
     const getCameraStatus = function (callback) {
       this.device.getPowerState()
         .then(status => {
-          callback(null, status)
+          const power = status[0];
+          this.log(`current power state: ${power}`)
+          callback(null, power === 'on')
         })
         .catch(callback)
     }
 
     const setCameraStatus = function (state, callback) {
+      this.log(`set power state to ${state}`)
       this.device.setPowerState(state)
         .then(() => {
           callback(null)
