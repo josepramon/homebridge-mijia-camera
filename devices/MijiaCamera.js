@@ -6,7 +6,7 @@ class MijiaCamera {
     if (!ip || !token) {
       throw new Error('The camera IP address and token are required')
     }
-    this.log = log;
+    this.log = log
     Object.assign(this, { name, ip, token })
   }
 
@@ -15,13 +15,10 @@ class MijiaCamera {
 
     this.log(`connecting to camera at ${address}...`)
 
-    return miio.device({ address, token });
-
-    // this.device = device
+    return miio.device({ address, token })
   }
 
   async getPowerState () {
-
     try {
       const device = await this.connect()
       return device.call('get_prop', ['power'])
@@ -29,11 +26,9 @@ class MijiaCamera {
       this.log.error('Camera not available')
       throw (new Error('Camera not available', err))
     }
-    
   }
 
   async setPowerState (state) {
-
     try {
       const device = await this.connect()
       device.call('set_power', [state ? 'on' : 'off'])
@@ -41,10 +36,6 @@ class MijiaCamera {
       this.log.error('Camera not available')
       throw (new Error('Camera not available', err))
     }
-
-
-    
-    
   }
 }
 

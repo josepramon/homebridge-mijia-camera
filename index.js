@@ -15,7 +15,6 @@ class MijiaCameraAccessory {
     this.device = new MijiaCamera(config, this.log)
     this.serviceInfo = this.createServiceInfo()
     this.cameraPowerToggleService = this.createToggleService()
-
   }
 
   createServiceInfo () {
